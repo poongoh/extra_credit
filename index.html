@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math Challenge</title>
+  <link rel="stylesheet" href="assets/css/math.css">
+</head>
+
+<body>
+
+  <div id="reminder">
+    <h2>보너스 점수 획득의 기회</h2>
+    <div>
+      <hr>
+      <p>
+        덧셈(+), 뺄셈(-), 곱셈(×)에 자신 있나요? 그러면 초등학교 수준의 4지선다형 산수문제 30개를 풀고 <b>보너스 점수</b>를 획득하세요.
+      </p>
+      <p style="color: #cc0000;">
+        10분 안에 30문제를 모두 풀면, 정답여부와 상관없이 <b>기본 보너스 점수</b>를 획득할 수 있습니다. 추가로, 최고 득점자 3명에게는 <b>추가 보너스 점수</b>가 부여됩니다.
+      </p>
+      <p>
+        남은 시간은 화면 상단에 표시됩니다. 시간이 촉박하다면 정답을 찍어도 무방합니다. 틀린 답에 대한 감점은 없습니다.
+      </p>
+    </div>
+    <hr>
+
+    <div id="warn">
+      <p>
+        문제를 푸는 중에는 다음 조작을 하지 않도록 주의 바랍니다:
+      </p>
+      <ul>
+        <li>이전 페이지로 돌아가기</li>
+        <li>현재 페이지 새로 고침</li>
+        <li>브라우저의 다른 탭이나 창으로 전환하기</li>
+      </ul>
+      위와 같은 조작은 <b>시스템 오류</b>를 발생시키며, 문제 풀이를 완료하지 못한 채 <b>조기 종료</b>될 수 있습니다. 그 경우 보너스 점수를 획득할 수 없다는 점 유의하세요.
+    </div>
+
+    <div id="agree">
+      <hr>
+      <p>참여를 원하시면 학번을 입력해 주세요.</p>
+      <input id="matric" type="text" placeholder="학번을 입력하세요" autocomplete="off">
+      <span id="stud_name">&nbsp;</span>
+    </div>
+    <div style="text-align:right;">
+      
+      <button id="mainBtn" disabled>CONFIRM</button>
+    </div>
+    <hr>
+    <script type="module" src="assets/js/login.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math Challenge</title>
+  <link rel="stylesheet" href="assets/css/math.css">
+</head>
+
+<body>
+  <!-- HEAD -->
+  <div id="how_to">
+    <h2>진행 방법</h2>
+    <hr>
+    <ol>
+      <li id="step1">
+        아래의 수식 중 <span class="box">가장 큰 결과값</span>이 나오는 것을 고르세요.
+      </li>
+      <li id="step2">
+        <span class="box" style="color:#3498db;">SUBMIT</span>을 클릭하면 <b style="color:#3498db;">정답을 확인</b>할 수 있습니다.
+      </li id="step3">
+      <li>
+        <span class="box" style="color:#2ca02c;">NEXT</span>를 클릭하면 <b tyle="color:#2ca02c;">다음 문제</b>로 넘어갑니다.
+      </li>
+    </ol>
+    <p>[<b><span id="round_sample">0</span>/3</b>] 아래 <b>연습 문제</b>를 풀어 보세요.</p>
+    <hr>
+  </div>
+
+  <div id="board" style="display: none;">
+    <h2>&#9203;&nbsp;<span id="clock">10:00</span></h2>
+    <hr>
+    <div class="score_board">
+      <span>문제: <b><span id="round_main">0</span></b>/<b>30</b></span>
+      <span>|</span>
+      <span>정답: <b><span style="color:#3498db;" id="gain">0</span></b></span>
+      <span>|</span>
+      <span>오답: <b><span style="color:#cc0000;" id="lose">0</span></b></span>
+    </div>
+    <hr>
+  </div>
+
+  <!-- MAIN -->
+  <div>
+    <div>
+      <output id="read">&nbsp;</output>
+    </div>
+    <div id="quiz">
+      <input type="radio" id="A" name="qns" value='A' />
+      <label for="A" class="math">&nbsp;</label>
+      <input type="radio" id="B" name="qns" value='B' />
+      <label for="B" class="math">&nbsp;</label>
+      <input type="radio" id="C" name="qns" value='C' />
+      <label for="C" class="math">&nbsp;</label>
+      <input type="radio" id="D" name="qns" value='D' />
+      <label for="D" class="math">&nbsp;</label>
+    </div>
+    <hr>
+  </div>
+
+  <!-- FOOT -->
+  <div id="foot">
+    <button id="mainBtn" value="submit" disabled>SUBMIT</button>
+  </div>
+  <div id="note">
+    <p id="note_sample">
+      <b>주의</b>: 지금 풀고 있는 문제는 작동방식을 익히기 위해 제공되는 <b>연습 문제</b>입니다. 따라서 최종 스코어에 포함되지 않습니다.
+    </p>
+    <p id="note_main" style="display: none">
+      <b>주의</b>: 보너스 점수를 받기 위해서는 10분 안에 모든 문제를 풀어야 합니다. 틀린 문제에 대한 감점은 없습니다.
+    </p>
+    <hr>
+  </div>
+
+  <!-- POP-UP -->
+  <div id="replay" class="modal" style="display: none;">
+    <div class="modal-content" id="replayMsg">
+      <code style="font-size: 12px; color: gray">Last Played: <span id="lastPlay"></span></code>
+      <p>이전에 이미 도전한 적이 있습니다. 다시 시도할 수 있지만 추가적인 보너스 점수는 획득할 수 없습니다.
+      </p>
+      <h3 style="text-align: center;">그래도 계속 진행할까요?</h3>
+      <div class="modal-btns">
+        <button class='exitBtn'>&#x274C; EXIT</button>
+        <button id="replayBtn">&#x25B6;&#xFE0F; PLAY</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="start" class="modal" style="display: none;">
+    <div class="modal-content" id="startMsg">
+      <p>준비된 모든 연습 문제를 풀었습니다.<br>이제 <b>실전 문제</b>를 풀어볼까요?</p>
+      <div class="modal-btns">
+        <button class='exitBtn'>&#x274C; EXIT</button>
+        <button id="playBtn">&#x25B6;&#xFE0F; PLAY</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="cheat" class="modal" style="display: none;">
+    <div class="modal-content" id="startMsg">
+      <code id="cheatMsg"></code>
+      <!-- <span id="cheatMsg"></span> -->
+    </div>
+  </div>
+
+  <div id="end_sad" class="modal" style="display: none;">
+    <div class="modal-content" id="sadMsg">
+      <h2>시간 종료</h2>
+      <p>주어진 시간내에 모든 문제를 풀지 못했습니다. 안타깝게도 보너스 점수를 획득할 수 없습니다.</p>
+      <div class="modal-btns">
+        <button id="sadBtn">&#x274C; EXIT</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="end_happy" class="modal" style="display: none;">
+    <div class="modal-content" id="happyMsg">
+      <h2>축하합니다!</h2>
+      <p>모든 문제를 다 풀었습니다.</p>
+      <hr>
+      <div class="results">
+        정답: <b><span style="color:#3498db;" id="gain_r">0</span></b>
+        &ensp;|&ensp;
+        오답: <b><span style="color:#cc0000;" id="lose_r">0</span></b>
+      </div>
+      <div style="text-align: center;">
+        <br><code id="wait" style="font-size: 12px;">결과를 처리중입니다. 잠시만 기다려주세요.</code>
+      </div>
+      <div class="modal-btns">
+        <button id="happyBtn" disabled>&#9989; CONFIRM</button>
+      </div>
+    </div>
+  </div>
+
+  <footer style="text-align: right;">
+    <span style="font-size: 12px;" id=stud_name>&nbsp;</span>
+  </footer>
+
+  <script type="module" src="assets/js/math.js"></script>
+</body>
+
+
+</html>
